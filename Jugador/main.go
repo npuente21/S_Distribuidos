@@ -10,10 +10,13 @@ import (
 )
 
 const (
-	address = "10.6.40.181: 50000"
+	address = "localhost: 50000"
 )
 
 func main() {
+	fmt.Println("-----------------------------------")
+	fmt.Println("BIENVENIDO JUGADOR")
+	fmt.Println("-----------------------------------")
 	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		log.Fatalf("Did not connect: %v", err)
@@ -21,9 +24,6 @@ func main() {
 	defer conn.Close()
 	ServiceClient := pb.NewLiderServicesClient(conn)
 
-	fmt.Println("-----------------------------------")
-	fmt.Println("BIENVENIDO JUGADOR")
-	fmt.Println("-----------------------------------")
 	var resp string
 	var name string
 	var numero int32 = 0

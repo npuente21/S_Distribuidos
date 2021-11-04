@@ -34,6 +34,20 @@ message Monto{
 }
 
 
+message Jugada{
+    int32 ID =1;
+    string juego=2;
+    string ronda=3;
+    int32 jugada=4;
+}
+
+message Registro{
+    string response =1;
+}
+
+message Check{
+    string check =1;
+}
 
 service LiderServices {  //con los service definimos los Servicios del Lider
     rpc NewPlayer(Message) returns (User) {};   // en este caso tenemos un método NewPlayer que rebide un Message y retorna un User
@@ -43,4 +57,11 @@ service LiderServices {  //con los service definimos los Servicios del Lider
 
 service PozoServices {
     rpc MontoPozo(Req) returns (Monto){};
+}
+
+service NameNode{
+    rpc JugadaPlayer(Jugada) returns(Registro){};
+}
+service DataNode{
+    rpc RegistrarInfo(Jugada) returns(Check){};
 }
